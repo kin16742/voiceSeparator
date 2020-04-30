@@ -9,9 +9,13 @@ class voiceSeparator(QWidget):
         self.initUI()
 
     def initUI(self):
+        self.fileName = QLineEdit()
         self.fileInputBtn = QPushButton('파일 입력')
-        self.separateBtn = QPushButton('음성 분리하기')
-        self.fileName = QLabel()
+        self.separateBtn = QPushButton('음성 분리')
+
+        self.fileName.setEnabled(False)
+        self.fileName.setFixedWidth(300)
+        self.fileName.setStyleSheet("background: white;")
 
         hbox1 = QHBoxLayout()
         hbox1.addStretch(1)
@@ -37,7 +41,7 @@ class voiceSeparator(QWidget):
 
         self.setLayout(vbox)
         self.setWindowTitle('Voice Separator')
-        self.resize(400, 150)
+        self.resize(400, 100)
         self.center()
         self.show()
 
