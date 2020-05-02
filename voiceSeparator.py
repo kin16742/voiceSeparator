@@ -88,7 +88,6 @@ class voiceSeparator(QWidget):
             self.messageBox('잘못된 파일 형식입니다!')
 
 
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = voiceSeparator()
