@@ -1,4 +1,5 @@
 import sys
+from wavToText import *
 from PyQt5.QtWidgets import *
 
 
@@ -60,7 +61,7 @@ class voiceSeparator(QWidget):
             QMessageBox.about(self, "warning", "파일을 선택하지 않았습니다.")
 
     def separate(self):
-        self.resize(100, 100)
+        self.fileName.setText(wavToText(self.fileName.text()))
 
 
 if __name__ == '__main__':
