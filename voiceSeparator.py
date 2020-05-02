@@ -1,5 +1,6 @@
 import sys
 from wavToText import *
+from videoToWav import *
 from PyQt5.QtWidgets import *
 
 
@@ -60,10 +61,16 @@ class voiceSeparator(QWidget):
             QMessageBox.about(self, "warning", "파일을 선택하지 않았습니다.")
 
     def separate(self):
-        path = wavToText(self.fileName.text())
+        path = self.fileName.text()
+
+        if path.split('.')[-1] == 'mp4':
+            wavToText(videoToWav(path))
+        else:
+            wavToText(path)
+
         msg = QMessageBox()
         msg.setWindowTitle('음성 분리 완료')
-        msg.setText(path.split('/')[-1] + '로 저장되었습니다!')
+        msg.setText(path.split('/')[-1].split('.')[0] + '.txt로 저장되었습니다!')
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()
 

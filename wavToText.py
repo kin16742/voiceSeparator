@@ -2,7 +2,7 @@ import speech_recognition as sr
 
 
 def wavToText(wavPath):
-    resPath = './' + wavPath.split("/")[-1] + '.txt'
+    resPath = './' + wavPath.split('/')[-1].split('.')[0] + '.txt'
     file = open(resPath, 'w')
 
     rec = sr.Recognizer()
