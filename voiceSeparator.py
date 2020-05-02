@@ -7,13 +7,12 @@ class voiceSeparator(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.separateBtn = QPushButton('음성 분리')
+        self.fileInputBtn = QPushButton('파일 입력')
+        self.fileName = QLineEdit()
         self.initUI()
 
     def initUI(self):
-        self.fileName = QLineEdit()
-        self.fileInputBtn = QPushButton('파일 입력')
-        self.separateBtn = QPushButton('음성 분리')
-
         self.fileName.setEnabled(False)
         self.fileName.setFixedWidth(300)
         self.fileName.setStyleSheet("background: white;")
@@ -67,6 +66,7 @@ class voiceSeparator(QWidget):
         msg.setText(path.split('/')[-1] + '로 저장되었습니다!')
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
