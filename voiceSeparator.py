@@ -61,8 +61,12 @@ class voiceSeparator(QWidget):
             QMessageBox.about(self, "warning", "파일을 선택하지 않았습니다.")
 
     def separate(self):
-        self.fileName.setText(wavToText(self.fileName.text()))
-
+        path = wavToText(self.fileName.text())
+        msg = QMessageBox()
+        msg.setWindowTitle('음성 분리 완료')
+        msg.setText(path.split('/')[-1] + '로 저장되었습니다!')
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.exec_()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
