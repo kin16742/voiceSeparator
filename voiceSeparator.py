@@ -11,7 +11,7 @@ class voiceSeparator(QWidget):
         self.separateBtn = QPushButton('음성 분리')
         self.fileInputBtn = QPushButton('파일 입력')
         self.fileName = QLineEdit()
-        self.notice = QLabel('mp3, wav, mp4 파일만 가능합니다.')
+        self.notice = QLabel('wav, mp4 파일만 가능합니다.')
         self.initUI()
 
     def initUI(self):
@@ -67,19 +67,26 @@ class voiceSeparator(QWidget):
         else:
             QMessageBox.about(self, "warning", "파일을 선택하지 않았습니다.")
 
-    def separate(self):
-        path = self.fileName.text()
-
-        if path.split('.')[-1] == 'mp4':
-            wavToText(videoToWav(path))
-        else:
-            wavToText(path)
-
+    def messageBox(self, text):
         msg = QMessageBox()
-        msg.setWindowTitle('음성 분리 완료')
-        msg.setText(path.split('/')[-1].split('.')[0] + '.txt로 저장되었습니다!')
+        msg.setWindowTitle('Notice')
+        msg.setText(text)
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()
+
+    def separate(self):
+        path = self.fileName.text()
+        fileType = path.split('.')[-1]
+
+        if fileType == 'mp4':
+            wavToText(videoToWav(path))
+            self.messageBox('음성 분리 완료!\n' + path.split('/')[-1].split('.')[0] + '.txt로 저장되었습니다!')
+        elif fileType == 'wav':
+            wavToText(path)
+            self.messageBox('음성 분리 완료!\n' + path.split('/')[-1].split('.')[0] + '.txt로 저장되었습니다!')
+        else:
+            self.messageBox('잘못된 파일 형식입니다!')
+
 
 
 if __name__ == '__main__':
