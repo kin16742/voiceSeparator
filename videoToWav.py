@@ -1,5 +1,6 @@
 import moviepy.editor as mp
 
+
 def videoToWav(videoPath):
     resPath = "./sample/" + videoPath.split('/')[-1].split('.')[0] + ".wav"
 

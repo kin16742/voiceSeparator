@@ -1,5 +1,7 @@
 import speech_recognition as sr
 
+from graph import makeGraph
+
 
 def wavToText(wavPath):
     resPath = './' + wavPath.split('/')[-1].split('.')[0] + '.txt'
@@ -14,8 +16,10 @@ def wavToText(wavPath):
     with af as source:
         audio = rec.record(source)
 
-    file.write(rec.recognize_google(audio))
+    file.write(rec.recognize_google(audio, language="en-US"))
 
     file.close()
+
+    makeGraph(wavPath)
 
     return resPath
